@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6360505331082828470}
   - component: {fileID: 6360505331082828464}
   - component: {fileID: 6360505331082828471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StaminaBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 6360505331554943386}
   - component: {fileID: 6360505331554943364}
   - component: {fileID: 6360505331554943387}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hpUP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,9 @@ GameObject:
   - component: {fileID: 6360505331600371380}
   - component: {fileID: 6360505331600371339}
   - component: {fileID: 6360505331600371338}
-  m_Layer: 0
+  - component: {fileID: 3229381108932386203}
+  - component: {fileID: 154451478}
+  m_Layer: 8
   m_Name: Chicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,6 +243,44 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &3229381108932386203
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6360505331600371337}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!195 &154451478
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6360505331600371337}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &6360505331622035854
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +294,7 @@ GameObject:
   - component: {fileID: 6360505331622035849}
   - component: {fileID: 6360505331622035848}
   - component: {fileID: 6360505331622035851}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StatsCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +308,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6360505331622035854}
-  m_LocalRotation: {x: -0.04405846, y: -0.89334, z: -0.43809947, w: 0.08984074}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.648}
   m_LocalScale: {x: 0.54757, y: 0.54757, z: 0.54757}
   m_Children:
@@ -372,7 +412,7 @@ GameObject:
   - component: {fileID: 6360505331852050156}
   - component: {fileID: 6360505331852050158}
   - component: {fileID: 6360505331852050157}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StaminaUP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -446,7 +486,7 @@ GameObject:
   - component: {fileID: 6360505332336811973}
   - component: {fileID: 6360505332336811975}
   - component: {fileID: 6360505332336811974}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hpBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}

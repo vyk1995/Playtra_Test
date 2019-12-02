@@ -15,4 +15,22 @@ public class Player : MonoBehaviour
     {
         
     }
+
+
+
+    //RaycastHit ControlPlayer()
+    //{
+    //    RaycastHit hit;
+
+
+
+
+
+    //    return hit;
+    //}
+
+
+
+
+
 }
