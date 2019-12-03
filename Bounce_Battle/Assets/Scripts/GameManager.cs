@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+   
         scatterRadius = platform.GetComponent<CapsuleCollider>().radius * (platform.transform.localScale.x - 2);        
         pigAmount = Random.Range(2, 5);
         woflAmount =  Random.Range(4, 7);        
@@ -29,13 +30,16 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+
+   
     }
-         
+
+   
+   
+
 
     void InstantiateAnimals(int pigs, int wolves) 
     {
-
-        
         //+1 for chicken.
         int totalAnimalCount = wolves + pigs+1;
         for (int i = 0; i <totalAnimalCount; i++)
@@ -67,7 +71,8 @@ public class GameManager : MonoBehaviour
             }
             else 
             {
-                Instantiate(AnimalGO[0], spawnPosition, Quaternion.identity);
+               var go =  Instantiate(AnimalGO[0], spawnPosition, Quaternion.identity);
+                player = go.GetComponent<Player>();
             }
             
         }
@@ -91,7 +96,19 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
+    
 
+   public RaycastHit RaycastMove ()
+    {
+        RaycastHit hit;
+        Ray raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(raycast, out hit))
+        {
+            return hit;
+        }
+        return hit;
+    }
 }
+
 
 
