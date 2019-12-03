@@ -10,7 +10,6 @@ public class DragToShoot : MonoBehaviour
     [SerializeField]
     float multiplier;
     Vector3 initialPosition;
-    Vector3 dragPosition;
     [SerializeField] GameObject indicator;
     public RaycastHit hitObject;
     float indicatorMoveRAdius;
@@ -53,11 +52,9 @@ public class DragToShoot : MonoBehaviour
                 var temp = transform.position + maxpos;
                 indicator.transform.position = temp ;
                 
-            }
-          
-            //Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.z, 30));
+            }     
 
-            Debug.Log(dragPosition);
+          
         }
         //upon released
         if (Input.GetMouseButtonUp(0))
