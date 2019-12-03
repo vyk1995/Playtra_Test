@@ -13,7 +13,7 @@ public class DragToShoot : MonoBehaviour
     [SerializeField] GameObject indicator;
     public RaycastHit hitObject;
     float indicatorMoveRAdius;
-
+    DragToShoot hitplayer;
 
 
     private void Start()
@@ -32,12 +32,14 @@ public class DragToShoot : MonoBehaviour
         //upon pressed
         if (Input.GetMouseButtonDown(0))
         {
-            var hitplayer = hitObject.transform.gameObject.GetComponent<DragToShoot>();
+            if (hitplayer == null) 
+            {
+                hitplayer = hitObject.transform.gameObject.GetComponent<DragToShoot>();
+            }                       
             if (hitplayer != null)
             {
                 indicator.SetActive(true);
-                initialPosition = indicator.transform.position;
-                Debug.Log("down");
+                initialPosition = indicator.transform.position;               
             }
 
         }

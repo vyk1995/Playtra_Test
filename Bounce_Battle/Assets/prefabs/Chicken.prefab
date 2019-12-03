@@ -450,6 +450,7 @@ GameObject:
   - component: {fileID: 3229381108932386203}
   - component: {fileID: 154451478}
   - component: {fileID: 912664678}
+  - component: {fileID: 912664672}
   m_Layer: 8
   m_Name: Chicken
   m_TagString: Untagged
@@ -585,6 +586,24 @@ MonoBehaviour:
   playerGo: {fileID: 6360505331600371337}
   multiplier: 11.33
   indicator: {fileID: 3587196880309743298}
+--- !u!114 &912664672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6360505331600371337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b73bbcfdc0c665b4b8ab2d2299168b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  stamina: 0
+  maxHealth: 10
+  maxStamina: 5
+  healthBar: {fileID: 6360505331554943387}
+  StaminaBar: {fileID: 6360505331852050157}
 --- !u!1 &6360505331622035854
 GameObject:
   m_ObjectHideFlags: 0
