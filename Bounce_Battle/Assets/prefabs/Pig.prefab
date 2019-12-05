@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 4228650913721742582}
   - component: {fileID: 1885347422}
   - component: {fileID: 679545179}
-  - component: {fileID: 679545180}
   m_Layer: 8
   m_Name: Pig
   m_TagString: Pig
@@ -156,22 +155,3 @@ MonoBehaviour:
   StaminaBar: {fileID: 0}
   Direction: {x: 0, y: 0, z: 0}
   targets: []
---- !u!1183024399 &679545180
-LookAtConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3978769607292077854}
-  m_Enabled: 0
-  m_Weight: 1
-  m_RotationAtRest: {x: 0, y: 0, z: 0}
-  m_RotationOffset: {x: 0, y: 280.2, z: -40.4}
-  m_Roll: 0
-  m_WorldUpObject: {fileID: 0}
-  m_UseUpObject: 0
-  m_IsContraintActive: 1
-  m_IsLocked: 1
-  m_Sources:
-  - sourceTransform: {fileID: 0}
-    weight: 1

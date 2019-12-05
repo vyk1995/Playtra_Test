@@ -113,6 +113,7 @@ public class Wolf : AnimalBehaviour
                     var posDiff = transform.position - player.transform.position;
 
                     agent.SetDestination(transform.position + posDiff);
+                    
                 }
             }
         }
@@ -129,6 +130,7 @@ public class Wolf : AnimalBehaviour
                 {
                     agent.isStopped = false;
                     agent.SetDestination(TargetGO.transform.position);
+                   
                 }
                 else
                 {
@@ -176,5 +178,12 @@ public class Wolf : AnimalBehaviour
         agent.velocity = rigBody.velocity;
 
 
+    }
+
+
+
+    private void OnDisable()
+    {
+       
     }
 }

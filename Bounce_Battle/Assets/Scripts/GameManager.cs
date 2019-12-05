@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    int pigAmount, woflAmount;
+    public int pigAmount, woflAmount;
     [SerializeField]    
     //0=player,1=pig, 2= wolf
     private GameObject[] AnimalGO;

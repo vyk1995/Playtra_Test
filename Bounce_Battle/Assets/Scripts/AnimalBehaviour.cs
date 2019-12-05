@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+
+
 public class AnimalBehaviour : MonoBehaviour
 {
     public float health, stamina, maxHealth, maxStamina, Damage;
@@ -14,10 +16,12 @@ public class AnimalBehaviour : MonoBehaviour
     [SerializeField]
     protected List<GameObject> targets = new List<GameObject>();
     protected Rigidbody rigBody;
-    
+
     // Start is called before the first frame update
     void Start()
     {   //initialise current values;
+
+       
       
         health = maxHealth;
         stamina = maxStamina;

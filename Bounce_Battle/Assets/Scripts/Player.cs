@@ -7,12 +7,13 @@ public class Player : AnimalBehaviour
     //float staminaRegenRate, healthRegenRate;
     //[SerializeField]
     //protected Image healthBar,StaminaBar;
-
+    public int killcount;
     // Start is called before the first frame update
     void Start()
     {   //initialise current values;
         maxHealth = 10;
         maxStamina = 5;
+        killcount = 0;
         health = maxHealth;
         stamina = maxStamina;
         staminaRegenRate = 1;
@@ -36,12 +37,21 @@ public class Player : AnimalBehaviour
 
     protected override void UpdateStats()
     {
+       
+
         base.UpdateStats();
         if (health <= 0)
             gm.GameOver();
 
-        if (targets.Count == 0 )
+        if (killcount == gm.woflAmount)
+        {
             gm.GameWin();
+          
+        }
+           
+
+        
+           
 
 
     }
@@ -67,8 +77,12 @@ public class Player : AnimalBehaviour
         if (wolf != null )
         {
             wolf.health -= Damage;
+            if (wolf.health <= 0)
+                killcount++;
+         
             wolf.gameObject.GetComponent<Rigidbody>().AddForce((Direction.normalized) * 100);
             // deal damage
+
 
         }
 

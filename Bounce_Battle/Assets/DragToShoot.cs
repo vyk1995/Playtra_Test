@@ -10,10 +10,10 @@ public class DragToShoot : MonoBehaviour
     [SerializeField]
     float multiplier;
     Vector3 initialPosition;
-    [SerializeField] GameObject indicator;
+    [SerializeField] GameObject indicator,arrow;
     public RaycastHit hitObject;
     float indicatorMoveRAdius;
-    DragToShoot hitplayer;
+   
     Player PS;
 
     private void Start()
@@ -38,15 +38,13 @@ public class DragToShoot : MonoBehaviour
         {
 
 
-            hitplayer = hitObject.transform.gameObject.GetComponent<DragToShoot>();
+           var hitplayer = hitObject.transform.gameObject.GetComponent<DragToShoot>();
+            Debug.Log(hitObject.transform.name);
             if (hitplayer != null)
-            {
-                
-                    indicator.SetActive(true);
-                    initialPosition = indicator.transform.position;
-                
-                
-                             
+            {                
+                indicator.SetActive(true);
+              
+                initialPosition = indicator.transform.position;
             }
 
         }
@@ -59,7 +57,9 @@ public class DragToShoot : MonoBehaviour
                var  maxpos = pos - transform.position;
                 maxpos = Vector3.ClampMagnitude(maxpos, indicatorMoveRAdius);
                 var temp = transform.position + maxpos;
-                indicator.transform.position = temp ;                
+                indicator.transform.position = temp ;
+               
+
             }           
         }
         //upon released
@@ -67,6 +67,7 @@ public class DragToShoot : MonoBehaviour
         {
 
             indicator.SetActive(false);
+           
             var dist = Vector3.Distance(indicator.transform.position, initialPosition);           
             var clampedDist = Mathf.Clamp(dist, 0, 3);
             // stores value of 0-1 of stamina cost
@@ -75,7 +76,7 @@ public class DragToShoot : MonoBehaviour
 
             //if (staminacost < PS.stamina)
             //{}
-            if (staminacost/2 < PS.stamina)
+            if (PS.stamina>0)
             {
                 PS.Damage = staminacost;
                 //reduce stamina by staminacost * maxstamina value to refect the actual cost in the stamina meter/
@@ -83,6 +84,7 @@ public class DragToShoot : MonoBehaviour
                 PS.Direction = initialPosition - indicator.transform.position;
                 gameObject.GetComponent<Rigidbody>().AddForce((initialPosition - indicator.transform.position) * clampedDist * multiplier);
                 indicator.transform.position = transform.position;
+           
             }
             
            
@@ -95,7 +97,6 @@ public class DragToShoot : MonoBehaviour
 
     public RaycastHit ShootRay()
     {
-
         RaycastHit hit;
         Ray raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(raycast, out hit))
