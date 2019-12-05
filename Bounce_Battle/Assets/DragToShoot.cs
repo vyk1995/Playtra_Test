@@ -14,32 +14,39 @@ public class DragToShoot : MonoBehaviour
     public RaycastHit hitObject;
     float indicatorMoveRAdius;
     DragToShoot hitplayer;
-
+    Player PS;
 
     private void Start()
     {
+        PS = GetComponent<Player>();
         indicatorMoveRAdius =2;
         multiplier = 100;
     }
 
     // Update is called once per frame
+
+
+    //NOTE: some 3rd party code used   : https://pastebin.com/s5Uxugps
     void Update()
     {
 
 
         hitObject = ShootRay();
-
+       
         //upon pressed
         if (Input.GetMouseButtonDown(0))
         {
-            if (hitplayer == null) 
-            {
-                hitplayer = hitObject.transform.gameObject.GetComponent<DragToShoot>();
-            }                       
+
+
+            hitplayer = hitObject.transform.gameObject.GetComponent<DragToShoot>();
             if (hitplayer != null)
             {
-                indicator.SetActive(true);
-                initialPosition = indicator.transform.position;               
+                
+                    indicator.SetActive(true);
+                    initialPosition = indicator.transform.position;
+                
+                
+                             
             }
 
         }
@@ -52,11 +59,8 @@ public class DragToShoot : MonoBehaviour
                var  maxpos = pos - transform.position;
                 maxpos = Vector3.ClampMagnitude(maxpos, indicatorMoveRAdius);
                 var temp = transform.position + maxpos;
-                indicator.transform.position = temp ;
-                
-            }     
-
-          
+                indicator.transform.position = temp ;                
+            }           
         }
         //upon released
         if (Input.GetMouseButtonUp(0))
@@ -65,8 +69,23 @@ public class DragToShoot : MonoBehaviour
             indicator.SetActive(false);
             var dist = Vector3.Distance(indicator.transform.position, initialPosition);           
             var clampedDist = Mathf.Clamp(dist, 0, 3);
-            gameObject.GetComponent<Rigidbody>().AddForce((initialPosition - indicator.transform.position) * clampedDist * multiplier);
-            indicator.transform.position = transform.position;
+            // stores value of 0-1 of stamina cost
+            int maxStaminaCost = 5;
+            float staminacost = (clampedDist/3) * maxStaminaCost /*PS.maxStamina*/;
+
+            //if (staminacost < PS.stamina)
+            //{}
+            if (staminacost/2 < PS.stamina)
+            {
+                PS.Damage = staminacost;
+                //reduce stamina by staminacost * maxstamina value to refect the actual cost in the stamina meter/
+                PS.stamina -= staminacost;
+                PS.Direction = initialPosition - indicator.transform.position;
+                gameObject.GetComponent<Rigidbody>().AddForce((initialPosition - indicator.transform.position) * clampedDist * multiplier);
+                indicator.transform.position = transform.position;
+            }
+            
+           
         }
 
     }

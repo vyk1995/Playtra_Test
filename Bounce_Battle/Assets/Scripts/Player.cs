@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class Player : AnimalBehaviour
 {
@@ -29,45 +25,54 @@ public class Player : AnimalBehaviour
     // Update is called once per frame
     void Update()
     {
+       // Debug.Log(rigBody.velocity.magnitude);
+
         UpdateStats();
     }
 
     protected override void UpdateStats()
     {
-        base.UpdateStats();
-        //healthBar.fillAmount = health / maxHealth;
-        //StaminaBar.fillAmount = stamina / maxStamina;
-
-        //if (health < maxHealth)
-        //{
-        //    health += healthRegenRate * Time.deltaTime;
-        //}
-        //if (stamina < maxStamina)
-        //{
-        //    stamina += staminaRegenRate * Time.deltaTime;
-        //}
+        base.UpdateStats();        
     }
 
 
-    private void OnCollisionEnter(Collision col)
+    protected override void OnCollisionEnter(Collision col)
     {
-        Debug.Log("colliding");
+        Vector3 Direction = col.contacts[0].point - transform.position;
+
+        
         var pig = col.gameObject.name == "Pig(Clone)";
         var wolf = col.gameObject.GetComponent<Wolf>();
         if (pig)
         {
+            health = maxHealth;
             maxHealth += 1;
             maxStamina += 1;
-            Destroy(col.gameObject);
+            Destroy(col.gameObject);         
+
         }
-        if (wolf != null)
+
+        
+        if (wolf != null )
         {
+            wolf.health -= Damage;
+            wolf.gameObject.GetComponent<Rigidbody>().AddForce((Direction.normalized) * 100);
             // deal damage
-            DealDamge();
+
         }
 
 
 
+    }
+
+
+    void OnDestroy()
+    {
+        if (targets.Contains(gameObject))
+        {
+            targets.Remove(gameObject);
+            Debug.Log("target removed ");
+        }
     }
 
     protected override void DealDamge()

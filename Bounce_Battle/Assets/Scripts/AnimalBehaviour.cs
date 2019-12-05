@@ -2,70 +2,82 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.AI;
 public class AnimalBehaviour : MonoBehaviour
 {
-
-    [SerializeField]
-    protected float health, stamina, maxHealth = 10, maxStamina = 5;
-    protected  float staminaRegenRate, healthRegenRate;
-    [SerializeField]
+    public float health, stamina, maxHealth, maxStamina, Damage;
+    public float staminaRegenRate, healthRegenRate;   
     public Image healthBar, StaminaBar;
-
-
-
+    public Vector3 Direction;
+    protected NavMeshAgent agent;
+    protected GameManager gm;
+    [SerializeField]
+    protected List<GameObject> targets = new List<GameObject>();
+    protected Rigidbody rigBody;
+    
     // Start is called before the first frame update
     void Start()
     {   //initialise current values;
-
+      
         health = maxHealth;
         stamina = maxStamina;
         staminaRegenRate = 1;
         healthRegenRate = .2f;
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateStats();
+       
 
+
+
+        UpdateStats();
     }
 
     protected virtual void UpdateStats()
     {
         healthBar.fillAmount = health / maxHealth;
+  
         StaminaBar.fillAmount = stamina / maxStamina;
 
         if (health < maxHealth)
         {
             health += healthRegenRate * Time.deltaTime;
         }
-        if (stamina < maxStamina)
+        if (stamina < maxStamina )
         {
             stamina += staminaRegenRate * Time.deltaTime;
         }
     }
 
-    private void OnCollisionEnter(Collision col)
+    protected virtual void OnCollisionEnter(Collision col)
     {
-        Debug.Log("colliding");
-        var pig = col.gameObject.name == "Pig(Clone)";
-        var wolf = col.gameObject.GetComponent<Wolf>();
-        if (pig)
-        {
-            maxHealth += 1;
-            maxStamina += 1;
-            Destroy(col.gameObject);
-        }
-        if (wolf != null)
-        {
-            // deal damage
-            DealDamge();
-        }
+        //Debug.Log("colliding");
+        //var pig = col.gameObject.name == "Pig(Clone)";
+        //var wolf = col.gameObject.GetComponent<Wolf>();
+        //var hitplayer = col.gameObject.GetComponent<Player>();
+    
+        //if (wolf != null)
+        //{
+        //    // deal damage
+        //    DealDamge();
+        //}
+
+        //if (hitplayer) 
+        //{
+        //    hitplayer.health -= Damage;
+        //}
 
 
 
     }
+    private void OnDisable()
+    {
+        targets.Remove(gameObject);
+    }
+
 
     protected virtual void DealDamge()
     {

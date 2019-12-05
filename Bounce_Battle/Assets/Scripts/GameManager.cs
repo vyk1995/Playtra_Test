@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     int pigAmount, woflAmount;
-    [SerializeField]
+    [SerializeField]    
     //0=player,1=pig, 2= wolf
     private GameObject[] AnimalGO;
     [SerializeField]  
@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     //List<Collider> spawnedPostions = new List<Collider>();
     public Collider[] cols;
      public LayerMask filtermask;
-
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -63,16 +63,20 @@ public class GameManager : MonoBehaviour
 
             if (i < wolves)
             {
-                Instantiate(AnimalGO[2], spawnPosition, Quaternion.identity);
+              var wolf =   Instantiate(AnimalGO[2], spawnPosition, Quaternion.identity);
+                
             }
             else if (i > wolves && i !=totalAnimalCount)
             {
-                Instantiate(AnimalGO[1], spawnPosition, Quaternion.identity);
+
+                var pig = Instantiate(AnimalGO[1], spawnPosition, Quaternion.identity);
+              
             }
             else 
             {
                var go =  Instantiate(AnimalGO[0], spawnPosition, Quaternion.identity);
                 player = go.GetComponent<Player>();
+                
             }
             
         }

@@ -14,9 +14,11 @@ GameObject:
   - component: {fileID: 3978769607292077855}
   - component: {fileID: 4228650913721742582}
   - component: {fileID: 1885347422}
+  - component: {fileID: 679545179}
+  - component: {fileID: 679545180}
   m_Layer: 8
   m_Name: Pig
-  m_TagString: Untagged
+  m_TagString: Pig
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,3 +133,45 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &679545179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3978769607292077854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b922c2c82168c7c40b8a4841c401bf8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  stamina: 0
+  maxHealth: 0
+  maxStamina: 0
+  Damage: 0
+  staminaRegenRate: 0
+  healthRegenRate: 0
+  healthBar: {fileID: 0}
+  StaminaBar: {fileID: 0}
+  Direction: {x: 0, y: 0, z: 0}
+  targets: []
+--- !u!1183024399 &679545180
+LookAtConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3978769607292077854}
+  m_Enabled: 0
+  m_Weight: 1
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationOffset: {x: 0, y: 280.2, z: -40.4}
+  m_Roll: 0
+  m_WorldUpObject: {fileID: 0}
+  m_UseUpObject: 0
+  m_IsContraintActive: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 0}
+    weight: 1
