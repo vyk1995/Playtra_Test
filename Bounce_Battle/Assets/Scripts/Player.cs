@@ -16,9 +16,13 @@ public class Player : AnimalBehaviour
         health = maxHealth;
         stamina = maxStamina;
         staminaRegenRate = 1;
-        healthRegenRate = .2f;
+        healthRegenRate = .2f; 
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-       
+        foreach (var enemy in GameObject.FindGameObjectsWithTag("Wolf"))
+        {
+            targets.Add(enemy);
+        }
 
     }
 
@@ -26,13 +30,20 @@ public class Player : AnimalBehaviour
     void Update()
     {
        // Debug.Log(rigBody.velocity.magnitude);
-
+        
         UpdateStats();
     }
 
     protected override void UpdateStats()
     {
-        base.UpdateStats();        
+        base.UpdateStats();
+        if (health <= 0)
+            gm.GameOver();
+
+        if (targets.Count == 0 )
+            gm.GameWin();
+
+
     }
 
 
@@ -66,14 +77,7 @@ public class Player : AnimalBehaviour
     }
 
 
-    void OnDestroy()
-    {
-        if (targets.Contains(gameObject))
-        {
-            targets.Remove(gameObject);
-            Debug.Log("target removed ");
-        }
-    }
+  
 
     protected override void DealDamge()
     {

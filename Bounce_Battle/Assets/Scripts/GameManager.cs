@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,11 +17,13 @@ public class GameManager : MonoBehaviour
     //List<Collider> spawnedPostions = new List<Collider>();
     public Collider[] cols;
      public LayerMask filtermask;
+    public TextMeshProUGUI text1;
+    public GameObject panel;
  
     // Start is called before the first frame update
     void Start()
     {
-   
+        Time.timeScale = 1;
         scatterRadius = platform.GetComponent<CapsuleCollider>().radius * (platform.transform.localScale.x - 2);        
         pigAmount = Random.Range(2, 5);
         woflAmount =  Random.Range(4, 7);        
@@ -112,6 +116,36 @@ public class GameManager : MonoBehaviour
         }
         return hit;
     }
+
+
+
+   public void GameWin()
+    {
+        panel.SetActive(true);
+        text1.text = "VICTORY!";
+        Time.timeScale = 0;
+    }
+
+   public void GameOver() 
+    {
+        panel.SetActive(true);
+        Time.timeScale = 0;
+        text1.text = "GameOver";
+
+    
+    }
+
+
+    public void PlayAgain() 
+    {
+        panel.SetActive(false);        
+        SceneManager.LoadScene(0);
+
+    }
+
+
+
+
 }
 
 

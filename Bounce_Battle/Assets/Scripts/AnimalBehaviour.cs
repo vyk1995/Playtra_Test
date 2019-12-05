@@ -23,7 +23,7 @@ public class AnimalBehaviour : MonoBehaviour
         stamina = maxStamina;
         staminaRegenRate = 1;
         healthRegenRate = .2f;
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+       
     }
 
     // Update is called once per frame
